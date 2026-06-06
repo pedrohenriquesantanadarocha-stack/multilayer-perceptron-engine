@@ -1,6 +1,6 @@
 from training import Training
 from multilayerPerceptron import MultilayerPerceptron
-from problems import Problems
+from Problems.problems import Problems
 
 # Example usage
 if __name__ == "__main__":
