@@ -1,5 +1,5 @@
-import numpy as np
-    
+import numpy as np 
+
 class Problems:
     def __init__(self, problems=None):
         self.problems = problems
@@ -19,7 +19,7 @@ class Problems:
         # Carrega a matriz inteira do arquivo de texto, usando a vírgula como separador
         # IMPORTANTE: Se o seu CSV tiver um cabeçalho (nomes nas colunas), 
         # adicione o parâmetro 'skiprows=1' dentro do loadtxt.
-        data = np.loadtxt(filepath, delimiter=',')
+        data = np.loadtxt(filepath, delimiter=',', encoding='utf-8-sig')
         
         # Fatiamento (Slicing) no Numpy: matriz[linhas, colunas]
         
@@ -33,23 +33,23 @@ class Problems:
 
     def XOR_problem(self):
         # Chama a função genérica informando que há apenas 1 coluna de rótulo no final
-        return self.load_from_csv('problemXOR.csv', num_label_cols=1)
+        return self.load_from_csv('Problems/ProblemsExamples/problemXOR.csv', num_label_cols=1)
     
     def AND_problem(self):
-        return self.load_from_csv('problemAND.csv', num_label_cols=1)
+        return self.load_from_csv('Problems/ProblemsExamples/problemAND.csv', num_label_cols=1)
     
     def OR_problem(self):
-        return self.load_from_csv('problemOR.csv', num_label_cols=1)
+        return self.load_from_csv('Problems/ProblemsExamples/problemOR.csv', num_label_cols=1)
     
     def CARACTERES_COMPLETO_problem(self):
         # Carregando os dados de treinamento (versão limpa)
         # O np.load lê diretamente os arquivos binários do NumPy
-        X_treino = np.load('X.npy')
-        Y_treino = np.load('Y_classe.npy')
+        X_treino = np.load('Problems/ProblemsExamples/X.npy')
+        Y_treino = np.load('Problems/ProblemsExamples/Y_classe.npy')
         
         # NOTA: Quando você baixar os arquivos com ruído para os testes, 
         # você pode carregá-los de forma idêntica:
-        # X_teste = np.load('X_ruido.npy')
-        # Y_teste = np.load('Y_classe_ruido.npy')
+        # X_teste = np.load('Problems/ProblemsExamples/X_ruido.npy')
+        # Y_teste = np.load('Problems/ProblemsExamples/Y_classe_ruido.npy')
         
         return X_treino, Y_treino
