@@ -1,4 +1,4 @@
-from Problems.problems import Problems
+from problems.problems import Problems
 
 class ControllerProblems:
     def __init__(self):

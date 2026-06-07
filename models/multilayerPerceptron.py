@@ -121,3 +121,21 @@ class MultilayerPerceptron:
         self.b2 -= learning_rate * db2
         self.W1 -= learning_rate * dW1
         self.b1 -= learning_rate * db1
+
+    def save_weights(self, filename):
+        """
+        Salva os pesos e bias da rede em um arquivo .npz compactado.
+        """
+        np.savez(filename, W1=self.W1, b1=self.b1, W2=self.W2, b2=self.b2)
+        print(f"Pesos salvos em {filename}")
+
+    def load_weights(self, filename):
+        """
+        Carrega os pesos e bias da rede a partir de um arquivo .npz.
+        """
+        data = np.load(filename)
+        self.W1 = data['W1']
+        self.b1 = data['b1']
+        self.W2 = data['W2']
+        self.b2 = data['b2']
+        print(f"Pesos carregados de {filename}")

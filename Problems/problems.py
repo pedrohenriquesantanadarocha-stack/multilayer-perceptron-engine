@@ -33,23 +33,23 @@ class Problems:
 
     def XOR_problem(self):
         # Chama a função genérica informando que há apenas 1 coluna de rótulo no final
-        return self.load_from_csv('Problems/ProblemsExamples/problemXOR.csv', num_label_cols=1)
+        return self.load_from_csv('problems/ProblemsExamples/problemXOR.csv', num_label_cols=1)
     
     def AND_problem(self):
-        return self.load_from_csv('Problems/ProblemsExamples/problemAND.csv', num_label_cols=1)
+        return self.load_from_csv('problems/ProblemsExamples/problemAND.csv', num_label_cols=1)
     
     def OR_problem(self):
-        return self.load_from_csv('Problems/ProblemsExamples/problemOR.csv', num_label_cols=1)
+        return self.load_from_csv('problems/ProblemsExamples/problemOR.csv', num_label_cols=1)
     
     def CARACTERES_COMPLETO_problem(self):
         # Carregando os dados de treinamento (versão limpa)
         # O np.load lê diretamente os arquivos binários do NumPy
-        X_treino = np.load('Problems/ProblemsExamples/X.npy')
-        Y_treino = np.load('Problems/ProblemsExamples/Y_classe.npy')
+        X_treino = np.load('problems/ProblemsExamples/problemCharacterInputs.npy')
+        Y_treino = np.load('problems/ProblemsExamples/Y_classe.npy')
         
         # NOTA: Quando você baixar os arquivos com ruído para os testes, 
         # você pode carregá-los de forma idêntica:
-        # X_teste = np.load('Problems/ProblemsExamples/X_ruido.npy')
-        # Y_teste = np.load('Problems/ProblemsExamples/Y_classe_ruido.npy')
+        # X_teste = np.load('problems/ProblemsExamples/X_ruido.npy')
+        # Y_teste = np.load('problems/ProblemsExamples/Y_classe_ruido.npy')
         
         return X_treino, Y_treino
