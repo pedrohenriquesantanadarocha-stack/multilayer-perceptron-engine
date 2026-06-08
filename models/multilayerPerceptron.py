@@ -41,7 +41,7 @@ class MultilayerPerceptron:
         s = self.sigmoid(z)
         return s * (1 - s)
     
-    def forward(self, X):
+    def feed_forward(self, X):
         """
         Processo de Forward Pass (Propagação para frente).
         Calcula a saída da rede neural passando os dados de entrada camada por camada.
@@ -66,7 +66,6 @@ class MultilayerPerceptron:
         Mede o quão distante a predição da rede (Y_hat) está do valor real/desejado (Y).
         """
         # Y é o d(n) (valor desejado) e Y_hat é o y(n) (saída da rede)
-        N = Y.shape[0] # Tamanho do conjunto de treinamento
         
         # Calcula o erro instantâneo e_j(n) = d_j(n) - y_j(n)
         erro = Y - Y_hat 
@@ -122,12 +121,31 @@ class MultilayerPerceptron:
         self.W1 -= learning_rate * dW1
         self.b1 -= learning_rate * db1
 
-    def save_weights(self, filename):
+    def make_weights(self):
+        """
+        Gera pesos aleatórios para a rede, útil para testes ou reinicialização.
+        """
+        self.W1 = np.random.uniform(-1, 1, (self.input_size, self.hidden_size))
+        self.W2 = np.random.uniform(-1, 1, (self.hidden_size, self.output_size))
+        self.b1 = np.zeros((1, self.hidden_size))
+        self.b2 = np.zeros((1, self.output_size))
+        print("Pesos e bias reinicializados com valores aleatórios.")
+
+        return self.W1, self.b1, self.W2, self.b2
+
+    def save_weights_files(self, filename):
         """
         Salva os pesos e bias da rede em um arquivo .npz compactado.
         """
         np.savez(filename, W1=self.W1, b1=self.b1, W2=self.W2, b2=self.b2)
         print(f"Pesos salvos em {filename}")
+
+    def save_weights(self, W1, b1, W2, b2):
+        """
+        Salva os pesos e bias da rede em um arquivo .npz compactado.
+        """
+        np.savez("results/pesos_iniciais.npz", W1=W1, b1=b1, W2=W2, b2=b2)
+        print(f"Pesos salvos em results/pesos_iniciais.npz")
 
     def load_weights(self, filename):
         """

@@ -23,7 +23,7 @@ class Training:
                 X_linha = x_train[i:i+1]
                 y_linha = y_train[i:i+1]
                 
-                output = self.model.forward(X_linha)
+                output = self.model.feed_forward(X_linha)
                 erro_instantaneo = self.model.compute_loss(output, y_linha)
                 erro_acumulado_epoca += erro_instantaneo
                 
@@ -32,17 +32,17 @@ class Training:
             # Erro Médio de Treinamento
             erro_medio_epoca = erro_acumulado_epoca / len(x_train)
             historico_erros_treino.append(erro_medio_epoca)
-            
+
+            erro_val = None
             # Cálculo do Erro de Validação e Parada Antecipada
             if x_val is not None and y_val is not None:
-                val_output = self.model.forward(x_val)
+                val_output = self.model.feed_forward(x_val)
                 erro_val = self.model.compute_loss(val_output, y_val)
                 historico_erros_val.append(erro_val)
                 
                 if erro_val < melhor_erro_val:
                     melhor_erro_val = erro_val
                     epocas_sem_melhoria = 0
-                    # Você poderia salvar os melhores pesos aqui
                 else:
                     epocas_sem_melhoria += 1
                 
@@ -82,3 +82,13 @@ class Training:
         train_idx = indices[test_size+val_size:]
         
         return x[train_idx], y[train_idx], x[val_idx], y[val_idx], x[test_idx], y[test_idx]
+    
+    def extract_classes(self, y):
+        """
+        Extrai os índices das classes a partir de um vetor one-hot ou binário.
+        Se y for one-hot, retorna o índice da classe. Se for binário, retorna 0 ou 1.
+        """
+        if y.shape[1] > 1: # One-Hot Encoding
+            return np.argmax(y, axis=1)
+        else: # Binário
+            return np.round(y).flatten()

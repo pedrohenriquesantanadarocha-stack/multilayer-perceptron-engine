@@ -1,5 +1,5 @@
-Input Size: 120
+Input Size: 2
 Hidden Size: 15
-Output Size: 26
+Output Size: 1
 Learning Rate: 0.1
-Max Epochs: 1000
+Max Epochs: 10000

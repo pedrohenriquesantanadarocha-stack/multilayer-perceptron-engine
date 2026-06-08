@@ -44,7 +44,7 @@ class Problems:
     def CARACTERES_COMPLETO_problem(self):
         # Carregando os dados de treinamento (versão limpa)
         # O np.load lê diretamente os arquivos binários do NumPy
-        X_treino = np.load('problems/ProblemsExamples/problemCharacterInputs.npy')
+        X_treino = np.load('problems/ProblemsExamples/X_classe.npy')
         Y_treino = np.load('problems/ProblemsExamples/Y_classe.npy')
         
         # NOTA: Quando você baixar os arquivos com ruído para os testes, 
