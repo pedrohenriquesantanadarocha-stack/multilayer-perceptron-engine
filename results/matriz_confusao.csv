@@ -1,0 +1,4 @@
+Hidden Size,Epochs to Converge,Learning Rate,Patience
+15,126,0.1,5
+15,1000,0.1,1000000
+15,1000,10.0,10000

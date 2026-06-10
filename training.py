@@ -68,8 +68,15 @@ class Training:
             
             # Log de acompanhamento do treinamento para monitorar a convergência do modelo.
             if epoch % 50 == 0 or epoch == self.epochs - 1:
+                # Calcula a média absoluta dos pesos atuais para demonstrar a convergência (estabilização)
+                media_w1 = np.mean(np.abs(self.model.W1))
+                media_w2 = np.mean(np.abs(self.model.W2))
+                
+                # Formatando a string que será exibida no terminal
+                status_pesos = f"| Pesos (Média Abs) W1: {media_w1:.4f}, W2: {media_w2:.4f}"
+    
                 if x_val is not None:
-                    print(f"Época {epoch}/{self.epochs} - Erro Treino: {erro_medio_epoca:.6f} | Erro Val: {erro_val:.6f}")
+                    print(f"Época {epoch}/{self.epochs} - Erro Treino: {erro_medio_epoca:.6f} | Erro Val: {erro_val:.6f} {status_pesos}")
                 else:
                     print(f"Época {epoch}/{self.epochs} - Erro Treino: {erro_medio_epoca:.6f}")
                 
