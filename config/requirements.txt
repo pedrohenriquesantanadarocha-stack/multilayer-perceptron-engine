@@ -1,0 +1,4 @@
+# Bibliotecas obrigatórias para o funcionamento e avaliação da Rede Neural MLP
+numpy>=1.20.0          # Operações matriciais e manipulação de arrays (Fase Forward e Backward)
+matplotlib>=3.4.0     # Geração de gráficos de convergência do erro (MSE) para o vídeo
+pandas>=1.2.0       # Manipulação de dados e análise de resultados (Fase de Avaliação)
